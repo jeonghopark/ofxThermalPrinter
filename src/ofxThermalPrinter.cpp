@@ -217,7 +217,7 @@ void ofxThermalPrinter::printBarcode(const std::string &data, BarcodeType type) 
 }
 
 void ofxThermalPrinter::print(ofBaseHasPixels &_img, int _threshold){
-    print(_img.getPixelsRef(),_threshold);
+    print(_img.getPixels(),_threshold);
 }
 
 void ofxThermalPrinter::print(ofPixels &_pixels, int _threshold){
@@ -334,7 +334,7 @@ void ofxThermalPrinter::printPixelRow(vector<bool> _line){
             data[i/8] += (bit&0x01)<<(7-i%8);
         }
         
-        const uint8_t command[4] = {18, 42, 1, rowBytesClipped};
+        const uint8_t command[4] = {18, 42, 1, static_cast<uint8_t>(rowBytesClipped)};
         port->write(command, 4);
         usleep(BYTE_TIME*4);
         

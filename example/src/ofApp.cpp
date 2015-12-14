@@ -5,7 +5,7 @@ void ofApp::setup(){
 	ofSetVerticalSync(true);
 	ofSetLogLevel(OF_LOG_VERBOSE);
 
-    printer.open("/dev/tty.PL2303-00002014");
+    printer.open("/dev/cu.usbserial-A900adIr");
     
     img.loadImage("logo.jpg");
     video.initGrabber(640, 480);
