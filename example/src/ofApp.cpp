@@ -5,9 +5,9 @@ void ofApp::setup(){
 	ofSetVerticalSync(true);
 	ofSetLogLevel(OF_LOG_VERBOSE);
 
-    printer.open("/dev/cu.usbserial-A900adIr");
+    printer.open("/dev/cu.usbserial");
     
-    img.loadImage("logo.jpg");
+    img.loadImage("schroedingerCat.jpg");
     video.initGrabber(640, 480);
 }
 
@@ -67,7 +67,13 @@ void ofApp::keyPressed  (int key){
         printer.println("ofxThermalPrinter");
         printer.setBold(false);
         printer.println("by Patricio Gonzalez Vivo.com");
-        printer.print(img,127);
+        ofPixels _pix;
+//        float _w = img.getWidth();
+//        float _h = img.getHeight();
+//        _image.setFromPixels(img.getPixels().getData(), _w, _h, OF_IMAGE_COLOR);
+        
+        _pix = img.getPixels();
+        printer.print(_pix);
     }
 }
 
