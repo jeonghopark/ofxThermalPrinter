@@ -5,7 +5,9 @@ void ofApp::setup(){
 	ofSetVerticalSync(true);
 	ofSetLogLevel(OF_LOG_VERBOSE);
 
-    printer.open("/dev/cu.usbserial");
+//    printer.open("/dev/cu.usbserial");
+    printer.open("/dev/cu.usbmodem1421");
+
     
     img.loadImage("schroedingerCat.jpg");
     video.initGrabber(640, 480);
