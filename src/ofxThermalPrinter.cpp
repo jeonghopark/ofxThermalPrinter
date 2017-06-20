@@ -31,7 +31,7 @@ bool ofxThermalPrinter::open(const std::string& portName){
     setPrintDensity();
     setStatus(true);
     
-    port->flushOutput();
+//    port->flushOutput();
     
     setReverse(true);
     println("Reverse ON");
@@ -43,32 +43,32 @@ bool ofxThermalPrinter::open(const std::string& portName){
 void ofxThermalPrinter::write(const uint8_t &_a){
     if(bConnected){
         port->write(&_a, 1);
-        usleep(BYTE_TIME);
+//        usleep(BYTE_TIME);
     }
 }
 
 void ofxThermalPrinter::write(const uint8_t &_a,const uint8_t &_b ){
     const uint8_t command[2] = { _a, _b };
     write(command, 2);
-    usleep(BYTE_TIME*2);
+//    usleep(BYTE_TIME*2);
 }
 
 void ofxThermalPrinter::write(const uint8_t &_a, const uint8_t &_b, const uint8_t &_c ){
     const uint8_t command[3] = { _a, _b, _c };
     write(command, 3);
-    usleep(BYTE_TIME*3);
+//    usleep(BYTE_TIME*3);
 }
 
 void ofxThermalPrinter::write(const uint8_t &_a, const uint8_t &_b, const uint8_t &_c, const uint8_t &_d){
     const uint8_t command[4] = { _a, _b, _c, _b };
     write(command, 4);
-    usleep(BYTE_TIME*4);
+//    usleep(BYTE_TIME*4);
 }
 
 void ofxThermalPrinter::write(const uint8_t *_array, int _size){
     if(bConnected){
         port->write(_array, _size);
-        usleep(BYTE_TIME*_size);
+//        usleep(BYTE_TIME*_size);
     }
 }
 
@@ -211,7 +211,7 @@ void ofxThermalPrinter::printBarcode(const std::string &data, BarcodeType type) 
     if(bConnected){
         write(29, 107, type);
         port->write(data);
-        usleep(BYTE_TIME*data.size());
+//        usleep(BYTE_TIME*data.size());
         write(0);
     }
 }
@@ -336,10 +336,10 @@ void ofxThermalPrinter::printPixelRow(vector<bool> _line){
         
         const uint8_t command[4] = {18, 42, 1, static_cast<uint8_t>(rowBytesClipped)};
         port->write(command, 4);
-        usleep(BYTE_TIME*4);
+//        usleep(BYTE_TIME*4);
         
         port->write(data,rowBytesClipped);
-        usleep(BYTE_TIME*rowBytesClipped);
+//        usleep(BYTE_TIME*rowBytesClipped);
     }
 }
 

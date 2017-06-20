@@ -29,17 +29,17 @@
 
 #include <SoftwareSerial.h>
 
-#define TX_PIN 6 // Arduino transmit  YELLOW WIRE  labeled RX on printer
-#define RX_PIN 5 // Arduino receive   GREEN WIRE   labeled TX on printer
+#define TX_PIN 1 // Arduino transmit  YELLOW WIRE  labeled RX on printer
+#define RX_PIN 0 // Arduino receive   GREEN WIRE   labeled TX on printer
 
 SoftwareSerial mySerial(RX_PIN, TX_PIN); // Declare SoftwareSerial obj first
 
-Adafruit_Thermal printer(&mySerial, 4);
+Adafruit_Thermal printer(&mySerial);
 //Adafruit_Thermal printer(&Serial, 4);     // Pass addr to printer constructor
 
 void setup() {
   // Open serial communications and wait for port to open:
-  Serial.begin(19200);
+  mySerial.begin(19200);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -54,10 +54,10 @@ void setup() {
 
 void loop() { // run over and over
   if (mySerial.available()) {
-    Serial.write(mySerial.read());
+    mySerial.write(mySerial.read());
   }
   if (Serial.available()) {
-    mySerial.write(Serial.read());
+    mySerial.write(mySerial.read());
   }
 }
 
