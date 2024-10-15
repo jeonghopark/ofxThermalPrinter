@@ -25,13 +25,21 @@
  This example code is in the public domain.
 
  */
+#include "Adafruit_Thermal.h"
+
 #include <SoftwareSerial.h>
 
-SoftwareSerial mySerial(2, 3); // RX, TX
+#define TX_PIN 1 // Arduino transmit  YELLOW WIRE  labeled RX on printer
+#define RX_PIN 0 // Arduino receive   GREEN WIRE   labeled TX on printer
+
+SoftwareSerial mySerial(RX_PIN, TX_PIN); // Declare SoftwareSerial obj first
+
+Adafruit_Thermal printer(&mySerial);
+//Adafruit_Thermal printer(&Serial, 4);     // Pass addr to printer constructor
 
 void setup() {
   // Open serial communications and wait for port to open:
-  Serial.begin(19200);
+  mySerial.begin(9600);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -40,16 +48,16 @@ void setup() {
 //  Serial.println("Goodnight moon!");
 
   // set the data rate for the SoftwareSerial port
-  mySerial.begin(19200);
+  mySerial.begin(9600);
 //  mySerial.println("Hello, world?");
 }
 
 void loop() { // run over and over
   if (mySerial.available()) {
-    Serial.write(mySerial.read());
+    mySerial.write(mySerial.read());
   }
   if (Serial.available()) {
-    mySerial.write(Serial.read());
+    mySerial.write(mySerial.read());
   }
 }
 

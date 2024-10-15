@@ -39,7 +39,7 @@ Adafruit_Thermal printer(&mySerial);
 
 void setup() {
   // Open serial communications and wait for port to open:
-  mySerial.begin(19200);
+  mySerial.begin(9600);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for native USB port only
   }
@@ -48,7 +48,7 @@ void setup() {
 //  Serial.println("Goodnight moon!");
 
   // set the data rate for the SoftwareSerial port
-  mySerial.begin(19200);
+  mySerial.begin(9600);
 //  mySerial.println("Hello, world?");
 }
 
