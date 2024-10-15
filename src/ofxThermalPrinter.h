@@ -15,12 +15,13 @@
 
 #include "ofMain.h"
 #include "serial.h"
+#include "unistd.h"
 
 // Though most of these printers are factory configured for 19200 baud
 // operation, a few rare specimens instead work at 9600.  If so, change
 // this constant.  This will NOT make printing slower!  The physical
 // print and feed mechanisms are the limiting factor, not the port speed.
-#define BAUDRATE  19200
+#define BAUDRATE  9600
 
 // Number of microseconds to issue one byte to the printer.  11 bits
 // (not 8) to accommodate idle, start and stop bits.  Idle time might
